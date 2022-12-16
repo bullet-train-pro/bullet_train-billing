@@ -2,7 +2,7 @@ class Billing::Subscription < ApplicationRecord
   # 🚅 add concerns above.
 
   belongs_to :team
-  belongs_to :provider_subscription, polymorphic: true
+  belongs_to :provider_subscription, dependent: :destroy, polymorphic: true
   # 🚅 add belongs_to associations above.
 
   has_many :included_prices, class_name: "Billing::Subscriptions::IncludedPrice", dependent: :destroy, foreign_key: :subscription_id

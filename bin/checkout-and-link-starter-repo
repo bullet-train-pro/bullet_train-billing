@@ -26,6 +26,11 @@ else
 fi
 
 package_name=$(find ../../*.gemspec | sed 's/\.gemspec//' | sed 's/..\///g')
+echo "package_name"
+echo $package_name
+echo "current dir"
+echo $(pwd)
+echo "."
 
 packages=(
   $package_name

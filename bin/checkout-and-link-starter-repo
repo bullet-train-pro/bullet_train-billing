@@ -40,3 +40,6 @@ echo "Adding the package again, but linking two directories up."
 echo "gem \"$package\", path: \"../..\"" >> Gemfile
 
 bundle install
+
+cp `bundle show --paths | grep bullet_train-billing | sort | head -n 1`/db/migrate/* db/migrate
+bundle exec rake db:migrate

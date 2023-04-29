@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# I can't remember if there was another fix for this.
+rm LICENSE.chromedriver
+
 # Look for a matching branch on the starter repository when running tests on CircleCI.
 CI_BRANCH=$CIRCLE_BRANCH
 if [[ -v CI_BRANCH ]]

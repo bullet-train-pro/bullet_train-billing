@@ -1,7 +1,7 @@
 <%= render "shared/cell" do |p| %>
   <%= p.content_for :title do %>
-    <% if subscription.included_prices.any? %>
-      <%= subscription.included_prices.map do |included_price| %>
+    <% if subscription.available_prices.any? %>
+      <%= subscription.available_prices.map do |included_price| %>
         <% product = included_price.price.product %>
         <% capture do %>
           <%= product.label_string %>
@@ -10,6 +10,9 @@
           <% end %>
         <% end %>
       <% end.to_sentence %>
+      <% if subscription.umbrella? %>
+        (via <%= subscription.covering_team.label_string %>)
+      <% end %>
     <% else %>
       No Products Added
     <% end %>

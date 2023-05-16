@@ -47,5 +47,28 @@ class Billing::Subscription < ApplicationRecord
   def pending?
     PENDING_STATUSES.include?(status)
   end
+
+  # TODO: Is this where this should live? We need to distinguish between included_prices and
+  # available_prices for the sake of Umbrella Subscriptions. An Umbrella Subscription is only
+  # connected to prices via the subscription of the covering team. Maybe this gem should
+  # define a basic verison of available_prices that just returns included_prices and then the
+  # umbrella_subscriptions gem could monkeypatch with this version?
+  def available_prices
+    if umbrella?
+      provider_subscription.covering_team.current_billing_subscription.available_prices
+    else
+      included_prices
+    end
+  end
+
+  # TODO: Maybe this should go in the umbrella_subscriptions gem?
+  def umbrella?
+    provider_subscription_type == "Billing::Umbrella::Subscription"
+  end
+
+  # TODO: Maybe this should go in the umbrella_subscriptions gem?
+  def covering_team
+    provider_subscription.covering_team
+  end
   # 🚅 add methods above.
 end

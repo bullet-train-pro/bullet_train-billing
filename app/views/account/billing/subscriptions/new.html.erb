@@ -1,4 +1,10 @@
 <% unless @subscription.included_prices.any? %>
+
+  <%# TODO: Eventually we should use the umbrella_subscription_enabled? helper, but for now we're doing the other thing so we don't have to wait for PRs to land in other repos. %>
+  <%# if umbrella_subscriptions_enabled? %>
+  <% if defined?(BulletTrain::Billing::UmbrellaSubscriptions) %>
+    <%= render 'account/billing/umbrella/subscriptions/new' %>
+  <% end %>
   <div class="lg:px-12 lg:pb-14">
     <h1 class="brand-title text-light-gradient"><%= t(".pricing.header") %></h1>
     <p class="brand-description max-w-3xl"><%= t(".pricing.description").html_safe %> </p>

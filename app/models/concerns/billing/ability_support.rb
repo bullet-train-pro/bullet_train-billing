@@ -18,6 +18,12 @@ module Billing::AbilitySupport
       can :manage, Billing::Stripe::Subscription, team_id: user.administrating_team_ids
     end
 
+    # TODO We need a way for `bullet_train-billing-umbrella_subscriptions` to define these.
+    if defined?(Billing::Umbrella::Subscription)
+      can :read, Billing::Umbrella::Subscription, team_id: user.team_ids
+      can :manage, Billing::Umbrella::Subscription, team_id: user.administrating_team_ids
+    end
+
     # You can destroy subscriptions that haven't been checked out yet.
     can :destroy, Billing::Subscription, team_id: user.administrating_team_ids, status: "initiated"
   end

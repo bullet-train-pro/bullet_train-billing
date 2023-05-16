@@ -121,6 +121,10 @@ class Account::Billing::SubscriptionsController < Account::ApplicationController
         # Stripe subscription attributes:
         :stripe_subscription_id,
 
+        # TODO We need a way for `bullet_train-billing-umbrella_subscriptions` to define this.
+        # Umbrella subscription attributes:
+        :covering_team_id,
+
         # External subscription attributes:
         :notes
       ]

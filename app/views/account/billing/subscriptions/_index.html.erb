@@ -17,7 +17,7 @@
           <% p.content_for :title, "Free Plan" %>
           <% p.content_for :status, "Active" %>
           <% p.content_for :actions do %>
-            <%= link_to "Upgrade", [:new, :account, team, :billing_subscription], class: "button button-smaller new" %>
+            <%= link_to "Upgrade", [:new, :account, team, :billing_subscription], class: "button button-smaller new", target: "_top" %>
           <% end %>
         <% end %>
       <% end %>

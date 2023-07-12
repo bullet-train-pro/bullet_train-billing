@@ -27,4 +27,6 @@ module Billing::AbilitySupport
     # You can destroy subscriptions that haven't been checked out yet.
     can :destroy, Billing::Subscription, team_id: user.administrating_team_ids, status: "initiated"
   end
+
+  ActiveSupport.run_load_hooks :bullet_train_billing_ability_support, self
 end

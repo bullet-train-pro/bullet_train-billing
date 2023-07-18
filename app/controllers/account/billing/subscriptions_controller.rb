@@ -125,6 +125,8 @@ class Account::Billing::SubscriptionsController < Account::ApplicationController
         # Umbrella subscription attributes:
         :covering_team_id,
 
+        *BulletTrain::Billing.provider_subscription_attributes,
+
         # External subscription attributes:
         :notes
       ]

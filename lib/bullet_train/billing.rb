@@ -3,6 +3,9 @@ require "bullet_train/billing/engine"
 
 module BulletTrain
   module Billing
+    singleton_class.attr_reader :provider_subscription_attributes
+    @provider_subscription_attributes = []
+
     module Records
       module Base
         extend ActiveSupport::Concern

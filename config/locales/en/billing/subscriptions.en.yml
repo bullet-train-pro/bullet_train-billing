@@ -32,6 +32,7 @@ en:
           "Billing::External::Subscription": Externally Managed
           # TODO We need a way for `bullet_train-billing-stripe` to define these.
           "Billing::Stripe::Subscription": Stripe
+          "Billing::Paddle::Subscription": Paddle
           # TODO We need a way for `bullet_train-billing-umbrella_subscriptions` to define these.
           "Billing::Umbrella::Subscription": Umbrella
       cycle_ends_at:

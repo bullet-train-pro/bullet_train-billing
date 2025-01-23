@@ -2,7 +2,20 @@
 
 <%= form_for @subscription, url: [:account, @team, :billing_subscriptions] do |form| %>
   <%= form.hidden_field "provider_subscription_type", value: "#{ENV["BILLING_DEFAULT_SUBSCRIPTION"] || "Billing::Stripe::Subscription"}" %>
-  <%= form.hidden_field "included_prices_attributes[0][price_id]", value: price.id %>
-  <%= form.hidden_field "included_prices_attributes[0][quantity]", value: price.calculate_quantity(@team) %>
+  <%
+    # TODO: At some point it would be nice to be able to remove the `name` attributes here and let
+    # Rails generate the name. Unfortunately there's currently a bug in Rails that's causing these
+    # fields to be generated with an incorrect name. So we're hardcoding the correctly formatted
+    # names to allow things to work.
+    # https://github.com/rails/rails/issues/54334
+  %>
+  <%= form.hidden_field "included_prices_attributes[0][price_id]",
+    name: "billing_subscription[included_prices_attributes][0][price_id]",
+    value: price.id
+  %>
+  <%= form.hidden_field "included_prices_attributes[0][quantity]",
+    name: "billing_subscription[included_prices_attributes][0][quantity]",
+    value: price.calculate_quantity(@team)
+  %>
   <%= form.submit price.trial_days ? t(".start_trial", days: price.trial_days) : t(".select"), class: classes %>
 <% end %>

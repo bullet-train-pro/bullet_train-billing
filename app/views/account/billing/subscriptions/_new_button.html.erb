@@ -4,7 +4,7 @@
   <%= form.hidden_field "provider_subscription_type", value: "#{ENV["BILLING_DEFAULT_SUBSCRIPTION"] || "Billing::Stripe::Subscription"}" %>
   <%
     # TODO: At some point it would be nice to be able to remove the `name` attributes here and let
-    # Rails generate the name. Unfortunately there's currently a but in Rails that's causing these
+    # Rails generate the name. Unfortunately there's currently a bug in Rails that's causing these
     # fields to be generated with an incorrect name. So we're hardcoding the correctly formatted
     # names to allow things to work.
     # https://github.com/rails/rails/issues/54334
